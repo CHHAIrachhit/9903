@@ -1,8 +1,12 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 import { Upload as UploadIcon, X } from 'lucide-vue-next'
 import { Button } from '@/components/ui/button'
 import { useUploadStore } from '@/store/upload'
+
+const props = defineProps<{
+  imagePreview?: string | null
+}>()
 
 const uploadStore = useUploadStore()
 
@@ -12,6 +16,10 @@ const emit = defineEmits<{
 }>()
 
 const isDragging = ref(false)
+
+const displayImage = computed(() => {
+  return uploadStore.uploadedImageUrl || uploadStore.imagePreview || props.imagePreview
+})
 
 const processFile = async (file: File) => {
   // Validate file type
@@ -86,9 +94,9 @@ const removeImage = () => {
 </script>
 <template>
   <div class="space-y-4">
-    <div v-if="uploadStore.imagePreview || uploadStore.uploadedImageUrl" class="relative inline-block">
+    <div v-if="displayImage" class="relative inline-block">
       <img
-        :src="uploadStore.uploadedImageUrl || uploadStore.imagePreview || undefined"
+        :src="displayImage || undefined"
         alt="Product preview"
         class="h-48 w-48 object-cover rounded-lg border border-input"
       />
