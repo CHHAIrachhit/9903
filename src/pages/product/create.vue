@@ -180,7 +180,7 @@ const onSubmit = form.handleSubmit(async (values) => {
                 step="0.01"
                 placeholder="0.00"
                 v-bind="componentField"
-                @update:model-value="(val: string) => form.setFieldValue('price', parseFloat(val) || 0)"
+                @update:model-value="(val: string | number) => form.setFieldValue('price', parseFloat(String(val)) || 0)"
               />
             </FormControl>
             <FormDescription>
@@ -198,7 +198,7 @@ const onSubmit = form.handleSubmit(async (values) => {
                 type="number"
                 placeholder="0"
                 v-bind="componentField"
-                @update:model-value="(val: string) => form.setFieldValue('stock', parseInt(val) || 0)"
+                @update:model-value="(val: string | number) => form.setFieldValue('stock', parseInt(String(val)) || 0)"
               />
             </FormControl>
             <FormDescription>

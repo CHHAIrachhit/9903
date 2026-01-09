@@ -236,7 +236,7 @@ onMounted(() => {
       <FormField v-slot="{ componentField }" name="type">
         <FormItem>
           <FormLabel>Store Type</FormLabel>
-          <Select v-model="componentField.modelValue" @update:model-value="(val: string) => form.setFieldValue('type', val)">
+          <Select v-model="componentField.modelValue" @update:model-value="(val: unknown) => form.setFieldValue('type', val != null ? String(val) : '')">
             <FormControl>
               <SelectTrigger>
                 <SelectValue placeholder="Select store type" />

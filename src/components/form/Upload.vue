@@ -88,7 +88,7 @@ const removeImage = () => {
   <div class="space-y-4">
     <div v-if="uploadStore.imagePreview || uploadStore.uploadedImageUrl" class="relative inline-block">
       <img
-        :src="uploadStore.uploadedImageUrl || uploadStore.imagePreview"
+        :src="uploadStore.uploadedImageUrl || uploadStore.imagePreview || undefined"
         alt="Product preview"
         class="h-48 w-48 object-cover rounded-lg border border-input"
       />
