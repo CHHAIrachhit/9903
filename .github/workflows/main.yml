@@ -42,5 +42,5 @@ jobs:
           username: root
           key: ${{ secrets.SSH_KEY }}
           script: |
-            /www/server/nginx/sbin/nginx -t
-            /www/server/nginx/sbin/nginx -s reload
+            /www/server/nginx/sbin/nginx -t && /www/server/nginx/sbin/nginx -s reload
+
